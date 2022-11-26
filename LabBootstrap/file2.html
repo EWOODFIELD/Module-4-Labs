@@ -1,0 +1,111 @@
+<!-- Step 1: Finish the exercise on page 52 mod4
+     Step 2: Create cards dynamically with a function call with your code 
+     from step 1. For this step you could break it down to something similar
+     to our lab exercises that we completed on page 35. 
+        2.1 Call a addCard() function that will create a single bootstrap
+        card by passing parameters
+        2.2 Create a data structure and loop through that calls the 
+        addCard function on every iteration. -->
+
+        <!-- Module 4 Slide 41 -->
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+<!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="Day2/styles.css">
+    <title>Hello, world!</title>
+</head>
+<body>
+<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+<main> 
+  <div class="container">
+    <div class="row" id="card-list"></div>
+</div>
+
+</main>
+
+<template id="card-template">
+    <div class="card col-lg-3 col-md-6 col-sm-12">
+        <div class="card-body">
+            <img class="card-img" src="">
+            <h5 class="card-title"></h5>
+            <p class='card-text'></p>
+    </div>
+</div>
+</template>
+
+<br>
+
+<script>
+function addCard(title, text, url) {
+        const template = document.getElementById("card-template").content.cloneNode(true);
+        template.querySelector('.card-title').innerText = title;
+        template.querySelector('.card-text').innerText = text;
+        template.querySelector('.card-img').src = url;
+        document.querySelector('#card-list').appendChild(template);
+}
+
+const cardInformationObject = [
+    {title: "card 1", text: "placeholder text 1"},
+    {title: "card 2", text: "placeholder text 2"},
+    {title: "card 3", text: "placeholder text 3"},
+    {title: "card 4", text: "placeholder text 4"},
+]
+
+addCard("bootstrap card 1", "card description", "https://cdn.images.express.co.uk/img/dynamic/143/590x/halo-tv-series-1629640.webp?r=1659946013597")
+addCard("bootstrap card 2", "card description 2", "https://www.denofgeek.com/wp-content/uploads/2021/12/halo-infinite-master-chief-cortana.jpg?resize=768%2C432")
+addCard("bootstrap card 3", "card description 3", "https://twistedvoxel.com/wp-content/uploads/2021/02/halo-infinite-fan-art.jpeg")
+addCard(cardInformationObject[0].title, cardInformationObject[0].text)
+
+for (let i=0; i<cardInformationObject.length; i++) {
+    addCard(cardInformationObject[i].title,cardInformationObject[i].text);
+  }
+
+</script>
+
+</body>
+
+</html>
