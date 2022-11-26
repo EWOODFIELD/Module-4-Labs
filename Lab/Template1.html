@@ -1,0 +1,64 @@
+<!-- Lab Exercises 1-2 -->
+
+<html>
+    <body>
+        <div id="card-list"></div>
+    </body>
+</html>
+<template id="card-template">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title"></div>
+            <div class="card-text"></div>
+    </div>
+</div>
+</template>
+
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #e3f2fd;
+    }
+    .card {
+        padding: 10px;
+    }
+    .card-title {
+        font-weight: 600;
+        font-size: 3em;
+        padding: 0 0 10px 0;
+    }
+    .card-description {
+        font-weight: 400;
+        font-size: 2em
+    }
+</style>
+
+<script>
+    const templateData=[{title: "Title2", text: "some more text"}, {title: "Title3", text: "some more text again"}, {title: "Newtitle", text: "sampletext"} ]
+    function addCard(title, text) {
+        const template = document.getElementById("card-template").content.cloneNode(true);
+        template.querySelector('.card-title').innerText = title;
+        template.querySelector('.card-text').innerText = text;
+        document.querySelector('#card-list').appendChild(template);
+    }
+    let title = "My Card Title"
+    let text = 'My Text'
+    if ('content' in document.createElement('template')) {
+    addCard(title, text);
+    addCard(templateData[0].title, templateData[0].text); //The add card function has to be called each time you want to create a card. If you had a bunch of objects (e.g. 1000) we would need a 'for' loop
+    addCard(templateData[1].title, templateData[1].text);
+    templateData.map(object => addCard(object.title, object.text));
+    }
+
+    
+
+    // const templateData1= addCard((templateData.map(object => {return [object.key, object.value];
+    // })),
+    // );
+
+    
+
+
+
+
+</script>

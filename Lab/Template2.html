@@ -1,0 +1,64 @@
+<!-- Lab Exercise 3 
+Exercise 3 - the artist’s portfolio:
+Generate multiple templates and populate the page
+dynamically. Create profile card and generate cards
+representing an artist's portfolio. -->
+
+<html>
+    <body>
+        <div id="card-list"></div>
+    </body>
+</html>
+<template id="card-template">
+    <div class="card">
+        <div class="card-body">
+            <div class="artist-name"></div>
+            <div class='artist-portfolio-title'></div>
+            <img class="card-src" src="">
+    </div>
+</div>
+</template>
+
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #e3f2fd;
+    }
+    .card {
+        padding: 10px;
+    }
+    .card-title {
+        font-weight: 600;
+        font-size: 3em;
+        padding: 0 0 10px 0;
+    }
+    .card-description {
+        font-weight: 400;
+        font-size: 2em
+    }
+</style>
+
+<script>
+const artist= {
+name:"Van Gogh",
+portfolio:[
+{title:"portrait", url:"https://collectionapi.metmuseum.org/api/collection/v1/iiif/436532/1671316/main-image"}, 
+{title:"sky", url:"https://mymodernmet.com/wp/wp-content/uploads/2020/11/White-house-night-van-goh-worldwide-2.jpg"},
+ ]
+}
+
+function addCard(name, title, url) {
+        const template = document.getElementById("card-template").content.cloneNode(true);
+        template.querySelector('.artist-name').innerText = name;
+        template.querySelector('.artist-portfolio-title').innerText = title;
+        template.querySelector('.card-src').src = url;
+        document.querySelector('#card-list').appendChild(template);
+}
+
+// if ('content'){
+for (let i=0; i<artist.portfolio.length; i++) {
+    addCard(artist.name,artist.portfolio[i].title, artist.portfolio[i].url);
+    }
+// }
+
+</script>
