@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .headerRowStyle{
+            background-color: grey;
+        }
+        .even{
+            background-color: bisque;
+        }
+        .odd{
+            background-color: red;
+        }
+    </style>
+    <title>Hello, world!</title>
+</head>
+<body>
+    <h1> Fetch Example Populating HTML Table with Fetch API call response</h1>
+    <table id = "postTable">
+    </table>
+    <script>
+            let fetchData = () => {
+                fetch('https://jsonplaceholder.typicode.com/users')
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log(data)
+                        //One solution here
+                        // data.map(element => {
+                        //     let parentNode =  document.getElementById('postTable')
+                        //     let tr = document.createElement("tr") // <tr>  </tr>
+                        //     tr.innerHTML = "<td>" + element.name +" </td> <td>" + element.email +"</td> <td>" + element.phone +"</td> <td>"
+                        //     parentNode.appendChild(tr)
+                        // })
+                        //One solution with createElement comment out the earlier solution
+                        let parentNode =  document.getElementById('postTable')
+                        let headerRow = document.createElement("tr")
+                        let th1 = document.createElement("th") //column 1
+                        let th2 = document.createElement("th") //column 2
+                        let th3 = document.createElement("th") //column 3
+                        th1.innerHTML += "Name" //<th> Name </th>
+                        th2.innerHTML += "Email" //<th> Email </th>
+                        th3.innerHTML += "Phone"
+                        headerRow.appendChild(th1) //<tr><th> Name </th> </tr>
+                        headerRow.appendChild(th2) //<tr><th> Name </th> <th> Email </th> </tr>
+                        headerRow.appendChild(th3) // <tr><th> Name </th> <th> Email </th> <th> Phone </th></tr>
+                        parentNode.appendChild(headerRow)
+                        headerRow.classList.add("headerRowStyle") //<tr class="headerRowStyle">
+                        data.map((element, index) => {
+                            let tr = document.createElement("tr") //create a row
+                            let td = document.createElement("td") //column 1
+                            td.innerHTML += element.name //
+                            tr.appendChild(td) //insert column into row <tr><td> Leanne Graham </td> </tr>
+                            let td2 = document.createElement("td") //column 2
+                            td2.innerHTML += element.email
+                            tr.appendChild(td2) //insert column into row <tr><td> Leanne Graham </td><td> incere@april.biz</td> </tr>
+                            let td3 = document.createElement("td") //column 2
+                            td3.innerHTML += element.phone
+                            tr.appendChild(td3) //insert column into row
+                            parentNode.appendChild(tr) //insert row into table in html document
+                            console.log(index)
+                            if ((index % 2 == 0)){
+                                tr.classList.add("even")
+                            } else {
+                                tr.classList.add("odd")
+                            }
+                        })
+                    })
+            }
+            fetchData()
+    </script>
+</body>
+</html>
